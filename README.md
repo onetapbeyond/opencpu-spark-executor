@@ -206,3 +206,7 @@ As shown, the array of server endpoints should be maintained as a
 broadcast variable within your Spark application. Each `OCPUTask` within
 your ROSE application will automatically be distributed for execution at random
 across the `OpenCPU server` cluster.
+
+### License
+
+See the [LICENSE](LICENSE.md) file for license rights and limitations (Apache License 2.0).
