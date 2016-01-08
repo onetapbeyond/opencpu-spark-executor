@@ -1,5 +1,7 @@
 #R OpenCPU Spark Executor (ROSE) Library
 
+[![Join the chat at https://gitter.im/onetapbeyond/opencpu-spark-executor](https://badges.gitter.im/onetapbeyond/opencpu-spark-executor.svg)](https://gitter.im/onetapbeyond/opencpu-spark-executor?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ROSE is a Scala library offering the full scientific computing power of
 the R programming language to 
 [Apache Spark](http://spark.apache.org/) batch and streaming
