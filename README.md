@@ -18,16 +18,26 @@ package provides a lightweight front-end for data scientists to use
 Apache Spark from R. This approach is ideally suited to
 investigative analytics, such as ad-hoc and exploratory analysis at scale.
 
-The ROSE library provides the same R analytics capabilities available to
-Apache SparkR applications within traditional Spark applications on the JVM.
-It does this by exposing new `analyze` operations that execute R analytics on
-compatible RDDs. This new facility is designed specifically for
+The ROSE library attempts to provide the same R analytics capabilities
+available to Apache SparkR applications within traditional Spark applications
+on the JVM. It does this by exposing new `analyze` operations that execute R
+analytics on compatible RDDs. This new facility is designed primarily for
 operational analytics and can be used alongside Spark core, SQL, Streaming,
 MLib and GraphX. 
 
 If you need to query R machine-learning models, score R prediction models or
-leverage any other aspect of the R library in real-time environments at scale,
-then the ROSE library may be for you.
+leverage any other aspect of the R library within your Spark applications on
+the JVM then the ROSE library may be for you.
+
+### ROSE Examples
+
+A number of example applications are provided to demonstrate the use of the
+ROSE library to deliver R analytics capabilities within any Spark solution.
+
+- [Hello, World!](examples/scala/hello-world)
+- [Spark Batch Scoring Engine](examples/scala/batch-scoring-engine)
+- [Spark Streaming Scoring Engine](examples/scala/streaming-scoring-engine)
+
 
 ### ROSE SBT Dependency
 
@@ -159,6 +169,9 @@ While data scientists can leverage the computing power of Spark within R
 applications in these types of application deployments, these same R
 capabilities are not available to Scala, Java or Python developers.
 
+Note, when working with Apache SparkR, the R runtime environment must be
+installed locally on each worker node on your cluster.
+
 
 ####3. Scala | Java + R (ROSE) Spark Application Deployment
 
@@ -209,4 +222,4 @@ across the `OpenCPU server` cluster.
 
 ### License
 
-See the [LICENSE](LICENSE.md) file for license rights and limitations (Apache License 2.0).
+See the [LICENSE](LICENSE) file for license rights and limitations (Apache License 2.0).
