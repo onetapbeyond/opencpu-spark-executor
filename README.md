@@ -2,8 +2,8 @@
 
 [![Join the chat at https://gitter.im/onetapbeyond/opencpu-spark-executor](https://badges.gitter.im/onetapbeyond/opencpu-spark-executor.svg)](https://gitter.im/onetapbeyond/opencpu-spark-executor?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-ROSE is a Scala library offering the full scientific computing power of
-the R programming language to 
+ROSE is a Scala library offering access to the full scientific computing
+power of the R programming language to 
 [Apache Spark](http://spark.apache.org/) batch and streaming
 applications on the JVM. This library is built on top of the
 [opencpu-r-executor](https://github.com/onetapbeyond/opencpu-r-executor)
@@ -42,9 +42,16 @@ ROSE library to deliver R analytics capabilities within any Spark solution.
 ### ROSE SBT Dependency
 
 ```
-libraryDependencies ++= Seq(
-  "io.onetapbeyond" % "opencpu-spark-executor_2.10" % "1.0"
-)
+libraryDependencies += "io.onetapbeyond" %% "opencpu-spark-executor_2.10" % "1.0"
+```
+
+### ROSE Spark Package Dependency
+
+Include the ROSE package in your Spark application using spark-shell, or spark-submit.
+For example:
+
+```
+$SPARK_HOME/bin/spark-shell --packages io.onetapbeyond:opencpu-spark-executor_2.10:1.0
 ```
 
 ### ROSE Basic Usage
