@@ -13,16 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.onetapbeyond.opencpu.spark.executor.examples
+package io.onetapbeyond.opencpu.spark.executor.examples;
 
-import scala.collection.JavaConverters._
+import java.util.*;
 
 /*
  * Viewer
  *
  * Represents a TV viewer, capturing both age and marital status. 
  */
-case class Viewer(age:Int, status:String) {
+public class Viewer implements java.io.Serializable {
+
+  private int age;
+  private String status;
+
+  public Viewer(int age, String status) {
+    this.age = age;
+    this.status = status;
+  }
 
   /*
    * inputs
@@ -30,15 +38,16 @@ case class Viewer(age:Int, status:String) {
    * A convenience method used to build the required input parameter
    * data for a call to the R function tvscore::tv used by the example 
    * application.
-   *
-   * As the ROSE library depends on the Java opencpu-r-executor library
-   * these inputs must be converted to a Java compatible Map before being
-   * returned on this call.
    */
-  def inputs():Map[String,Object] = {
-    val pdata = Map("age" -> age, "marital" -> status)
-    val plist = List(pdata.asJava)
-    Map("input" -> plist.asJava) 
+  Map<String,Object> inputs() {
+
+    Map<String,Object> inputs = new HashMap();
+    Map data = new HashMap();
+    data.put("age", age);
+    data.put("marital", status);
+    inputs.put("input", Arrays.asList(data));
+
+    return inputs;
   }
 
 }

@@ -31,7 +31,7 @@ import org.apache.spark.streaming.receiver.Receiver
  * by the {@link StreamingScoringEngine}.
  */
 class ViewerDataStream(maxDataOnStreamPerSecond: Int)
-        extends Receiver[Viewer](StorageLevel.MEMORY_AND_DISK_2) {
+    extends Receiver[Viewer](StorageLevel.MEMORY_AND_DISK_2) {
 
   def onStart() {
     new Thread("Streaming Scoring Engine (SSE) Receiver") {
@@ -51,7 +51,7 @@ class ViewerDataStream(maxDataOnStreamPerSecond: Int)
       while(!isStopped && !interrupted) {
 
         val viewer = Viewer(ViewerDataStream.simAge(),
-                            ViewerDataStream.simStatus())
+                          ViewerDataStream.simStatus())
         store(viewer)
 
         try {
@@ -62,9 +62,9 @@ class ViewerDataStream(maxDataOnStreamPerSecond: Int)
       }
 
     } catch {
-     case t: Throwable => println("SimulateDataStream: ex=" + t)
+      case t: Throwable => println("SimulateDataStream: ex=" + t)
     }
-    
+
   }
 
 }

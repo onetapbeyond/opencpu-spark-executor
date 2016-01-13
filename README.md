@@ -34,15 +34,21 @@ the JVM then the ROSE library may be for you.
 A number of example applications are provided to demonstrate the use of the
 ROSE library to deliver R analytics capabilities within any Spark solution.
 
-- [Hello, World!](examples/scala/hello-world)
-- [Spark Batch Scoring Engine](examples/scala/batch-scoring-engine)
-- [Spark Streaming Scoring Engine](examples/scala/streaming-scoring-engine)
+- Hello, World! [ [Scala](examples/scala/hello-world) ][ [Java](examples/java/hello-world) ]
+- Spark Batch Scoring Engine [ [Scala](examples/scala/batch-scoring-engine) ][ [Java](examples/java/batch-scoring-engine) ]
+- Spark Streaming Scoring Engine [ [Scala](examples/scala/streaming-scoring-engine) ][ [Java](examples/java/streaming-scoring-engine) ]
 
 
 ### ROSE SBT Dependency
 
 ```
 libraryDependencies += "io.onetapbeyond" %% "opencpu-spark-executor_2.10" % "1.0"
+```
+
+### ROSE Gradle Dependency
+
+```
+compile 'io.onetapbeyond:opencpu-spark-executor_2.10:1.0'
 ```
 
 ### ROSE Spark Package Dependency

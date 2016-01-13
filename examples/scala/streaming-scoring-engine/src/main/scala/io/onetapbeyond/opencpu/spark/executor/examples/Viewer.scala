@@ -36,8 +36,7 @@ case class Viewer(age:Int, status:String) {
    * returned on this call.
    */
   def inputs():Map[String,Object] = {
-    val pdata = Map("age" -> age,
-                    "marital" -> status)
+    val pdata = Map("age" -> age, "marital" -> status)
     val plist = List(pdata.asJava)
     Map("input" -> plist.asJava) 
   }
