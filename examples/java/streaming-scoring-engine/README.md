@@ -1,4 +1,4 @@
-###Spark Streaming Scoring Engine
+###Streaming Predictive Scoring Engine
 
 An example application demonstrating the use of the ROSE library to
 deliver R analytics capabilities within a Spark Streaming solution.

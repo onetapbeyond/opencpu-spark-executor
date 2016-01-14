@@ -35,8 +35,9 @@ A number of example applications are provided to demonstrate the use of the
 ROSE library to deliver R analytics capabilities within any Spark solution.
 
 - Hello, World! [ [Scala](examples/scala/hello-world) ][ [Java](examples/java/hello-world) ]
-- Spark Batch Scoring Engine [ [Scala](examples/scala/batch-scoring-engine) ][ [Java](examples/java/batch-scoring-engine) ]
-- Spark Streaming Scoring Engine [ [Scala](examples/scala/streaming-scoring-engine) ][ [Java](examples/java/streaming-scoring-engine) ]
+- Batch Predictive Scoring Engine [ [Scala](examples/scala/batch-scoring-engine) ][ [Java](examples/java/batch-scoring-engine) ]
+- Streaming Predictive Scoring Engine [ [Scala](examples/scala/streaming-scoring-engine) ][ [Java](examples/java/streaming-scoring-engine) ]
+- Twitter Sentiment Analysis [ [Scala](examples/scala/sentiment-analysis) ][ [Java](examples/java/sentiment-analysis) ]
 
 
 ### ROSE SBT Dependency

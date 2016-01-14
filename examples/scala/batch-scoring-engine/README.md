@@ -1,4 +1,4 @@
-###Spark Batch Scoring Engine
+###Batch Predictive Scoring Engine
 
 An example application demonstrating the use of the ROSE library to
 deliver R analytics capabilities within a Spark Batch solution. This
@@ -33,5 +33,5 @@ shell script provided as part of the Spark distribution.
 The submit command you need should look something like this:
 
 ```
-spark-submit --class io.onetapbeyond.opencpu.spark.executor.examples.BatchScoringEngine --master local[*] /path/to/fat/jar/batch-scoring-engine-assembly-1.0.jar
+spark-submit --class io.onetapbeyond.opencpu.spark.executor.examples.BatchScoringEngine --master local[*] /path/to/fat/jar/batch-scoring-engine-assembly-[version].jar
 ```

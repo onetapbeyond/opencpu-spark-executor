@@ -132,7 +132,7 @@ object StreamingScoringEngine {
   }
 
   private val OCPU_SERVER = "http://public.opencpu.org/ocpu"
-  private val APP_NAME = "ROSE Streaming Scoring Engine Example"
+  private val APP_NAME = "ROSE Streaming Predictive Scoring Engine Example"
   private val STREAM_BATCH_DURATION = 1
   private val STREAM_DATA_PER_SECOND = 3
   private val APP_TIMEOUT = 10000

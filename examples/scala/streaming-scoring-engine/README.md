@@ -1,4 +1,4 @@
-###Spark Streaming Scoring Engine
+###Streaming Predictive Scoring Engine
 
 An example application demonstrating the use of the ROSE library to
 deliver R analytics capabilities within a Spark Streaming solution.
@@ -34,5 +34,5 @@ shell script provided as part of the Spark distribution.
 The submit command you need should look something like this:
 
 ```
-spark-submit --class io.onetapbeyond.opencpu.spark.executor.examples.StreamingScoringEngine --master local[*] /path/to/fat/jar/streaming-scoring-engine-assembly-1.0.jar
+spark-submit --class io.onetapbeyond.opencpu.spark.executor.examples.StreamingScoringEngine --master local[*] /path/to/fat/jar/streaming-scoring-engine-assembly-[version].jar
 ```

@@ -138,7 +138,7 @@ public class StreamingScoringEngine {
   }
 
   private static String OCPU_SERVER = "http://public.opencpu.org/ocpu";
-  private static String APP_NAME = "ROSE Streaming Scoring Engine Example";
+  private static String APP_NAME = "ROSE Streaming Predictive Scoring Engine Example";
   private static long   BATCH_DURATION = 1000;
   private static long   DATA_PER_SECOND = 3;
   private static long   APP_TIMEOUT = 10000;

@@ -21,23 +21,18 @@ import org.apache.spark._
 import scala.collection.JavaConverters._
 
 /*
- * BatchScoringEngine
+ * SentimentAnalysis
  * 
  * An example application demonstrating the use of the ROSE library to
  * deliver R analytics capabilities within a Spark Batch solution. This
- * example deploys a scoring engine for calculating predictions using
- * an R fitted GAM model.
- * 
- * To understand in detail the R analytics used by this example see the
- * documentation in the following article posted on the OpenCPU blog:
- * 
- * https://www.opencpu.org/posts/scoring-engine/
+ * example determines the sentiment of "Tweets" using Naive-Bayes
+ * sentiment classification.
  * 
  * To simplify the deployment of this example application it implements an
- * internal batch data source rather than introducing an external dependency.
- * See {@link ViewerDataSource} for details.
+ * internal "Tweet" data source rather than introducing an external dependency.
+ * See {@link TwitterDataSource} for details.
  */
-object BatchScoringEngine {
+object SentimentAnalysis {
 
   def main(args:Array[String]):Unit = {
 
@@ -46,12 +41,11 @@ object BatchScoringEngine {
       val sc = initSparkContext()
 
       /*
-       * Initialize the batch data source for the example by
-       * generating an RDD[Viewer].
+       * Initialize the Twitter "Tweet" data source for the example
+       * by generating an RDD[String].
        */
-      val dataRDD =
-        sc.parallelize(ViewerDataSource.build(BATCH_DATA_SIZE))
-	
+      val dataRDD = sc.parallelize(TwitterDataSource.build())
+
       /*
        * Because this example depends on an OpenCPU cloud server that
        * lives external to the Spark cluster it is good practice to
@@ -60,21 +54,21 @@ object BatchScoringEngine {
        * Passing an endpoint on the RDD.analyze operation is not
        * required if you deploy your application to a Spark cluster
        * that has an OpenCPU server running on each Spark worker node.
-       */		
+       */     
       val endpoint = sc.broadcast(OCPU_SERVER)
-
+	
       /*
-       * Map over dataRDD[Viewer] to produce an RDD[OCPUTask].
-       * Each OCPUTask executes the R tvscore::tv function on the
-       * input data provided to generate a realtime prediction.
+       * Map over dataRDD[String] to produce an RDD[OCPUTask].
+       * Each OCPUTask executes the R sentR::classify.naivebayes
+       * function on each Tweet to generate a sentiment score.
        */
-      val rTaskRDD = dataRDD.map(viewer => {
+      val rTaskRDD = dataRDD.map(tweet => {
 
         OCPU.R()
-            .user("opencpu")
-            .pkg("tvscore")
-            .function("tv")
-            .input(viewer.inputs().asJava)
+            .user("mananshah99")
+            .pkg("sentR")
+            .function("classify.naivebayes")
+            .input(Map("sentences" -> tweet).asJava)
             .github()
       })
 
@@ -90,12 +84,12 @@ object BatchScoringEngine {
        * and to output the results.
        */
       rResultRDD.foreach { result => {
-        println("BatchScoringEngine: " + "tvscore::tv input=" +
-                  result.input + " returned=" + result.output)
+        println("SentimentAnalysis: " + "sentR::classify.naivebayes " +
+          "input=" + result.input + " returned=" + result.output)
       }}
 
     } catch {
-      case t:Throwable => println("BatchScoringEngine: caught ex=" + t)
+      case t:Throwable => println("SentimentAnalysis: caught ex=" + t)
     }
 
   }
@@ -106,7 +100,6 @@ object BatchScoringEngine {
   }
 
   private val OCPU_SERVER = "http://public.opencpu.org/ocpu"
-  private val APP_NAME = "ROSE Batch Predictive Scoring Engine Example"
-  private val BATCH_DATA_SIZE = 10
+  private val APP_NAME = "ROSE Twitter Sentiment Analysis Example"
 
 }

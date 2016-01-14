@@ -22,23 +22,18 @@ import org.apache.spark.broadcast.Broadcast;
 import java.util.*;
 
 /*
- * BatchScoringEngine
+ * SentimentAnalysis
  * 
  * An example application demonstrating the use of the ROSE library to
  * deliver R analytics capabilities within a Spark Batch solution. This
- * example deploys a scoring engine for calculating predictions using
- * an R fitted GAM model.
- * 
- * To understand in detail the R analytics used by this example see the
- * documentation in the following article posted on the OpenCPU blog:
- * 
- * https://www.opencpu.org/posts/scoring-engine/
+ * example determines the sentiment of "Tweets" using Naive-Bayes
+ * sentiment classification.
  * 
  * To simplify the deployment of this example application it implements an
- * internal batch data source rather than introducing an external dependency.
- * See {@link ViewerDataSource} for details.
+ * internal "Tweet" data source rather than introducing an external dependency.
+ * See {@link TwitterDataSource} for details.
  */
-public class BatchScoringEngine {
+public class SentimentAnalysis {
 
   public static void main(String[] args) {
 
@@ -47,11 +42,10 @@ public class BatchScoringEngine {
       JavaSparkContext sc = initSparkContext();
 
       /*
-       * Initialize the batch data source for the example by
-       * generating dataRDD<Viewer>.
+       * Initialize the Twitter "Tweet" data source for the example
+       * by generating dataRDD<String>.
        */
-      JavaRDD<Viewer> dataRDD =
-        sc.parallelize(ViewerDataSource.build(BATCH_DATA_SIZE));
+      JavaRDD<String> dataRDD = sc.parallelize(TwitterDataSource.build());
 
       /*
        * Because this example depends on an OpenCPU cloud server that
@@ -65,20 +59,20 @@ public class BatchScoringEngine {
       Broadcast<String> endpoint = sc.broadcast(OCPU_SERVER);
 
       /*
-       * Map over dataRDD<Viewer> to produce rTaskRDD<OCPUTask>.
-       * Each OCPUTask executes the R tvscore::tv function on the
-       * input data provided to generate a realtime prediction.
+       * Map over dataRDD<String> to produce an RDD<OCPUTask>.
+       * Each OCPUTask executes the R sentR::classify.naivebayes
+       * function on each Tweet to generate a sentiment score.
        */
-      JavaRDD<OCPUTask> rTaskRDD = dataRDD.map(viewer -> {
+      JavaRDD<OCPUTask> rTaskRDD = dataRDD.map(tweet -> {
 
-        /*
-         * Build OCPUTask for R tvscore::tv call.
-         */	
+        Map data = new HashMap();
+        data.put("sentences", tweet);
+
         return OCPU.R()
-                   .user("opencpu")
-                   .pkg("tvscore")
-                   .function("tv")
-                   .input(viewer.inputs())
+                   .user("mananshah99")
+                   .pkg("sentR")
+                   .function("classify.naivebayes")
+                   .input(data)
                    .github();
       });
 
@@ -95,12 +89,12 @@ public class BatchScoringEngine {
        * and to output the results.
        */
       rTaskResultRDD.foreach(rTaskResult -> {
-        System.out.println("BatchScoringEngine: stats::rnorm input=" +
-          rTaskResult.input() + " returned=" + rTaskResult.output());
+        System.out.println("SentimentAnalysis: sentR::classify.naivebayes " +
+          rTaskResult.input() + " returned=" + rTaskResult.output() + ", error=" + rTaskResult.error());
       });
 
     } catch(Exception ex) {
-      System.out.println("BatchScoringEngine: caught ex=" + ex);
+      System.out.println("SentimentAnalysis: caught ex=" + ex);
     }
   }
 
@@ -110,7 +104,6 @@ public class BatchScoringEngine {
   }
 
   private static String OCPU_SERVER = "http://public.opencpu.org/ocpu";
-  private static String APP_NAME = "ROSE Batch Predictive Scoring Engine Example";
-  private static int    BATCH_DATA_SIZE = 10;
+  private static String APP_NAME = "ROSE Twitter Sentiment Analysis Example";
  
 }
