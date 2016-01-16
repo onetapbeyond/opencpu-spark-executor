@@ -13,6 +13,9 @@ running on the JVM.
 
 ### ROSE Motivation
 
+> Where Apache SparkR lets data scientists use Spark from R, ROSE is
+> designed to let Scala and Java developers use R from Spark.
+
 The popular [Apache SparkR](https://github.com/apache/spark/tree/master/R)
 package provides a lightweight front-end for data scientists to use
 Apache Spark from R. This approach is ideally suited to
