@@ -1,4 +1,4 @@
-#R OpenCPU Spark Executor (ROSE) Library
+#Apache Spark OpenCPU Executor (ROSE) Library
 
 [![Join the chat at https://gitter.im/onetapbeyond/opencpu-spark-executor](https://badges.gitter.im/onetapbeyond/opencpu-spark-executor.svg)](https://gitter.im/onetapbeyond/opencpu-spark-executor?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
