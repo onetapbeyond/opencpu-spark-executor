@@ -2,11 +2,10 @@
 
 [![Join the chat at https://gitter.im/onetapbeyond/opencpu-spark-executor](https://badges.gitter.im/onetapbeyond/opencpu-spark-executor.svg)](https://gitter.im/onetapbeyond/opencpu-spark-executor?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-ROSE is a Scala library offering access to the full scientific computing
-power of the R programming language to 
-[Apache Spark](http://spark.apache.org/) batch and streaming
-applications on the JVM. This library is built on top of the
-[opencpu-r-executor](https://github.com/onetapbeyond/opencpu-r-executor)
+ROSE is an [Apache Spark](http://spark.apache.org/) package offering access to
+the full scientific computing power of the R programming language to 
+Spark batch and streaming applications on the JVM. This library is built on top
+of the [opencpu-r-executor](https://github.com/onetapbeyond/opencpu-r-executor)
 library, a lightweight solution for integrating R analytics executed on
 the [OpenCPU server](https://www.opencpu.org/) into any application
 running on the JVM.
