@@ -125,6 +125,8 @@ rResultRDD.foreach { rResult ->
 }
 ```
 
+#VSLIDE?gist=f54a46e9f9da47da0d51c3f2ab777569
+
 #HSLIDE
 
 ### ROSE + Apache Spark Stream Processing
@@ -181,6 +183,8 @@ rResultStream.foreachRDD { resultRDD => {
     }}
 }}
 ```
+
+#VSLIDE?gist=5c2d6e8afccf0eb6cf77cb5588850833
 
 #HSLIDE
 
