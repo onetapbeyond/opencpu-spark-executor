@@ -1,5 +1,3 @@
-#HSLIDE
-
 ### R
 ### OpenCPU Spark Executor
 ### (ROSE)
