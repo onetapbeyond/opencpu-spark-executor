@@ -1,3 +1,4 @@
 theme : sky
 logo : assets/spark.png
 # background : assets/custombg.jpg
+highlight : hybrid
